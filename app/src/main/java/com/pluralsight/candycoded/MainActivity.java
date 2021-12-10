@@ -1,5 +1,6 @@
 package com.pluralsight.candycoded;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,12 +23,22 @@ import com.google.gson.GsonBuilder;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import java.net.Inet4Address;
+
 import cz.msebera.android.httpclient.Header;
 
 
 public class MainActivity extends AppCompatActivity {
   private Candy[] candies;
   private CandyDbHelper candyDbHelper = new CandyDbHelper(this);
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    Intent infoIntent =  new Intent(this, InfoActivity.class);
+    startActivity(infoIntent);
+
+    return super.onOptionsItemSelected(item);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
